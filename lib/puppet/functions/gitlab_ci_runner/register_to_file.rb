@@ -42,6 +42,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
       return 'DUMMY-NOOP-TOKEN' if Puppet.settings[:noop]
 
       begin
+        exit
         if File.exist?(ca_file)
           exit
         end
