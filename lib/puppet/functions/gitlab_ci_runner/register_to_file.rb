@@ -42,7 +42,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
       return 'DUMMY-NOOP-TOKEN' if Puppet.settings[:noop]
 
       begin
-        if ca_content != undef
+        if (defined?(ca_content)).nil?
           out = File.open(ca_file, "w")
           out.puts(ca_content)
           out.close
