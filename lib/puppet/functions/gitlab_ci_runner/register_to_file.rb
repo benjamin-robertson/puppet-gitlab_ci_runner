@@ -30,7 +30,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
     optional_param 'Hash', :additional_options
     optional_param 'Optional[String[1]]', :proxy
     optional_param 'Optional[String[1]]', :ca_file # This function will be deferred so can't use types from Stdlib etc.
-    #optional_param 'Optional[String[1]]', :ca_content # Provide the ca_content instead of a file reference
+    optional_param 'Optional[String[1]]', :ca_content # Provide the ca_content instead of a file reference
     return_type 'String[1]'
   end
 
@@ -42,6 +42,11 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
       return 'DUMMY-NOOP-TOKEN' if Puppet.settings[:noop]
 
       begin
+        if ca_content != undef
+          out = File.open(ca_file, "w")
+          out.puts(ca_content)
+          out.close
+        end
         authtoken = PuppetX::Gitlab::Runner.register(url, additional_options.merge('token' => regtoken), proxy, ca_file)['token']
 
         # If this function is used as a Deferred function the Gitlab Runner config dir
