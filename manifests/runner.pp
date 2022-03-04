@@ -73,8 +73,7 @@ define gitlab_ci_runner::runner (
   Hash $config,
   Enum['present', 'absent']  $ensure     = 'present',
   Optional[Stdlib::HTTPUrl]  $http_proxy = undef,
-  #Optional[Stdlib::Unixpath] $ca_file    = undef,
-  Optional[String]           $ca_file    = undef,
+  Optional[Stdlib::Unixpath] $ca_file    = undef,
   Optional[String]           $ca_content = undef,
 ) {
   include gitlab_ci_runner
