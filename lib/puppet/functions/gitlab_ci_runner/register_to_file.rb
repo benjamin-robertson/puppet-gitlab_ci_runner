@@ -42,11 +42,11 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
       return 'DUMMY-NOOP-TOKEN' if Puppet.settings[:noop]
 
       begin
-        if (defined?(ca_content)).nil?
-          out = File.open(ca_file, "w")
-          out.puts(ca_content)
-          out.close
-        end
+        #if (defined?(ca_content)).nil?
+        #  out = File.open(ca_file, "w")
+        #  out.puts(ca_content)
+        #  out.close
+        #end
         authtoken = PuppetX::Gitlab::Runner.register(url, additional_options.merge('token' => regtoken), proxy, ca_file)['token']
 
         # If this function is used as a Deferred function the Gitlab Runner config dir
