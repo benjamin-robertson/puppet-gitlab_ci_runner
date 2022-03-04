@@ -117,7 +117,7 @@ define gitlab_ci_runner::runner (
       content => $content,
     }
   } else {
-    $absent_content = Deferred('gitlab_ci_runner::unregister_from_file',[$_config['url'], $_config['name'], $http_proxy, $ca_file, $ca_content])
+    $absent_content = Deferred('gitlab_ci_runner::unregister_from_file',[$_config['url'], $_config['name'], $http_proxy, $ca_file])
 
     file { "/etc/gitlab-runner/auth-token-${_config['name']}":
       ensure  => absent,
