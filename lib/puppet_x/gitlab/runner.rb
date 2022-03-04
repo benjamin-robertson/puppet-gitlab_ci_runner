@@ -40,7 +40,7 @@ module PuppetX
         if uri.scheme == 'https'
           http.use_ssl     = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          http.ca_file = ca_file if ca_file
+          http.cert = ca_file if ca_file
         end
         request          = http_method.new(uri.request_uri, headers)
         request.body     = options.to_json

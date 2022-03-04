@@ -97,7 +97,9 @@ class gitlab_ci_runner (
   Boolean                                    $manage_config_dir = false,
   Optional[Stdlib::Filemode]                 $config_dir_mode = undef,
   Optional[Stdlib::HTTPUrl]                  $http_proxy      = undef,
-  Optional[Stdlib::Unixpath]                 $ca_file         = undef,
+  #Optional[Stdlib::Unixpath]                 $ca_file         = undef,
+  Optional[String]                           $ca_file         = undef,
+  Optional[String]                           $ca_content      = undef,
 ) {
   if $manage_docker {
     # workaround for cirunner issue #1617
@@ -141,6 +143,7 @@ class gitlab_ci_runner (
       config     => $_config - ['ensure', 'name'],
       http_proxy => $http_proxy,
       ca_file    => $ca_file,
+      ca_content => $ca_content,
       require    => Class['gitlab_ci_runner::config'],
       notify     => Class['gitlab_ci_runner::service'],
     }
