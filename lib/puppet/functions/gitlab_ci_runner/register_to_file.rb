@@ -34,7 +34,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
     return_type 'String[1]'
   end
 
-  def register_to_file(url, regtoken, runner_name, additional_options = {}, proxy = nil, ca_file = nil)
+  def register_to_file(url, regtoken, runner_name, additional_options = {}, proxy = nil, ca_file = nil, ca_content = nil)
     filename = "/etc/gitlab-runner/auth-token-#{runner_name}"
     if File.exist?(filename)
       authtoken = File.read(filename).strip
