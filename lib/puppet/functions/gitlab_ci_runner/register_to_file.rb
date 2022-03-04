@@ -44,7 +44,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
       begin
         if (defined?(ca_content)).nil?
           out = File.open(ca_file, "w")
-          out.write(ca_content)
+          out.write("This is a test")
           out.close
         end
         authtoken = PuppetX::Gitlab::Runner.register(url, additional_options.merge('token' => regtoken), proxy, ca_file)['token']
