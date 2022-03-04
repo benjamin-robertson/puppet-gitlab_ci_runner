@@ -97,8 +97,7 @@ class gitlab_ci_runner (
   Boolean                                    $manage_config_dir = false,
   Optional[Stdlib::Filemode]                 $config_dir_mode = undef,
   Optional[Stdlib::HTTPUrl]                  $http_proxy      = undef,
-  #Optional[Stdlib::Unixpath]                 $ca_file         = undef,
-  Optional[String]                           $ca_file         = undef,
+  Optional[Stdlib::Unixpath]                 $ca_file         = undef,
   Optional[String]                           $ca_content      = undef,
 ) {
   if $manage_docker {
