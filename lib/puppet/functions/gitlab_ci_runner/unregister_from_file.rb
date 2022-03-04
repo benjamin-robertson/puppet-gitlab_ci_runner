@@ -21,7 +21,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::unregister_from_file') do
     param 'String[1]', :runner_name
     optional_param 'Optional[String[1]]', :proxy
     optional_param 'Optional[String[1]]', :ca_file # This function will be deferred so can't use types from stdlib etc.
-    optional_param 'Optional[String[1]]', :ca_content # Provide the ca_content instead of a file reference
+    #optional_param 'Optional[String[1]]', :ca_content # Provide the ca_content instead of a file reference
   end
 
   def unregister_from_file(url, runner_name, proxy = nil, ca_file = nil)
