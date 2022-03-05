@@ -43,7 +43,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
 
       begin
         if !File.exist?(ca_file)
-          #exit
+          return 'file doesn\'t exist'
         end
         #if (defined?(ca_content)).nil?
         #  out = File.open(ca_file, "w")
