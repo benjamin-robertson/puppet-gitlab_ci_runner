@@ -56,7 +56,7 @@ describe 'gitlab_ci_runner::register_to_file' do
         allow(PuppetX::Gitlab::Runner).to receive(:register).with(url, { 'token' => regtoken }, nil, '/path/to/ca_file').and_return(return_hash)
       end
 
-      it { is_expected.to run.with_params(url, regtoken, runner_name, {}, nil, '/path/to/ca_file').and_return('CA file doesn\'t exist, not creating authtoken') }
+      it { is_expected.to run.with_params(url, regtoken, runner_name, {}, nil, '/path/to/ca_file').and_return('Specified CA file doesn\'t exist, not creating authtoken') }
     end
   end
 
