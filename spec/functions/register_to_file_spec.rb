@@ -51,6 +51,7 @@ describe 'gitlab_ci_runner::register_to_file' do
 
       it { is_expected.to run.with_params(url, regtoken, runner_name, {}, nil, '/tmp').and_return(return_hash['token']) }
     end
+    
     context 'with non existent ca_file option' do
       before do
         allow(PuppetX::Gitlab::Runner).to receive(:register).with(url, { 'token' => regtoken }, nil, '/path/to/ca_file').and_return(return_hash)
