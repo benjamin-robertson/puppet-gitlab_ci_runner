@@ -43,8 +43,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::register_to_file') do
       begin
         # Confirm the specified ca file exists
         if !ca_file.nil? && !File.exist?(ca_file)
-          Puppet.warning('Specified CA file doesn\'t exist for gitlab-ci-runner. Did you forget to create it?')
-          #puts('Specified CA file doesn\'t exist for gitlab-ci-runner. Did you forget to create it?')
+          Puppet.warning('Unable to register gitlab runner at this time as the specified `ca_file` does not exist (yet).  If puppet is managing this file, the next run should complete the registration process.')
           return 'Specified CA file doesn\'t exist, not creating authtoken'
         end
         authtoken = PuppetX::Gitlab::Runner.register(url, additional_options.merge('token' => regtoken), proxy, ca_file)['token']
