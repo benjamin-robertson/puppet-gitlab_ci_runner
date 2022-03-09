@@ -32,13 +32,13 @@ describe 'gitlab_ci_runner::unregister_from_file' do
       it { is_expected.to run.with_params(url, runner_name, nil, '/tmp').and_return('Successfully unregistered gitlab runner testrunner') }
     end
 
-    #context 'with non existent ca_file option' do
-    #  before do
-    #    allow(PuppetX::Gitlab::Runner).to receive(:unregister).with(url, { 'token' => 'authtoken' }, nil, '/path/to/ca_file').and_return(nil)
-    #  end
+    context 'with non existent ca_file option' do
+      before do
+        allow(PuppetX::Gitlab::Runner).to receive(:unregister).with(url, { 'token' => 'authtoken' }, nil, '/path/to/ca_file').and_return(nil)
+      end
 
-    #  it { is_expected.to run.with_params(url, runner_name, nil, '/path/to/ca_file').and_return('Specified CA file doesn\'t exist, not attempting to create authtoken') }
-    #end
+      it { is_expected.to run.with_params(url, runner_name, nil, '/path/to/ca_file').and_return('Specified CA file doesn\'t exist, not attempting to create authtoken') }
+    end
   end
 
   context "does nothing if file doesn't exist" do
