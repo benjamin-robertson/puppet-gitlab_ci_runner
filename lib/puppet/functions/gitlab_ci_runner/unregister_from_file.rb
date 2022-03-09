@@ -35,7 +35,7 @@ Puppet::Functions.create_function(:'gitlab_ci_runner::unregister_from_file') do
     else
       begin
         if !ca_file.nil? && !File.exist?(ca_file)
-          Puppet.warning('Unable to register gitlab runner at this time as the specified `ca_file` does not exist (yet).  If puppet is managing this file, the next run should complete the registration process.')
+          Puppet.warning('Unable to unregister gitlab runner at this time as the specified `ca_file` does not exist. The runner config will be removed from this hosts config only; please remove from gitlab manually.')
           return 'Specified CA file doesn\'t exist, not attempting to create authtoken'
         end
         PuppetX::Gitlab::Runner.unregister(url, { 'token' => authtoken }, proxy, ca_file)
